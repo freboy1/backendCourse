@@ -15,7 +15,7 @@ form {
     margin-top: 20px;
 }
 
-input {
+input, select {
     padding: 10px;
     margin-right: 10px;
 }
