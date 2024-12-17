@@ -14,30 +14,66 @@ app.get('/', (req, res) => {
     // Serve the index.html file when the user accesses the root URL
     res.sendFile(__dirname + '/views/index.html');
 });
+// Helper function to validate numbers
 function isNumber(value) {
-    return typeof value === 'number';
-  }
+    return !isNaN(parseFloat(value)) && isFinite(value);
+}
+
 // Route for handling the form submission
 app.post('/calculate', (req, res) => {
-    // Retrieve the 'name' field value from the submitted form
-    const weight = req.body.weight;
-    const height = req.body.height;
-    let message;
-    if (!isNumber(weight) && !isNumber(height)) {
-        message = "You needed to enter numbers";
-        message += "\n Your Brain is Underweight";
+    const weight = parseFloat(req.body.weight);
+    const height = parseFloat(req.body.height);
+    const age = parseInt(req.body.age);
+    let gender = 1; // Gender factor
+
+    if (req.body.gender === "Female") {
+        gender = 0.9;
+    }
+
+    let bmiValue, bmiMessage, diagnos;
+
+    if (!isNumber(weight) || !isNumber(height) || !isNumber(age)) {
+        bmiMessage = "You needed to enter valid numbers";
+        diagnos = "Your Brain is Underweight";
+    } else if (weight <= 0 || height <= 0 || age <= 0) {
+        bmiMessage = "You needed to enter positive numbers";
+        diagnos = "Your Brain is Underweight";
+    } else if (age < 18) {
+        bmiMessage = "Age must be >= 18";
+        diagnos = "Cannot decide";
     } else {
-        if (weight < 0 || height < 0) {
-            message = "You needed to enter positive numbers";
-            message += "\n Your Brain is Underweight";
+        bmiValue = (weight / (height * height)) * gender;
+
+        // Adjust BMI based on age
+        let ageFactor = 1.0;
+        if (age >= 25 && age <= 34) {
+            ageFactor = 0.98;
+        } else if (age <= 44) {
+            ageFactor = 0.96;
+        } else if (age <= 54) {
+            ageFactor = 0.94;
+        } else if (age > 54) {
+            ageFactor = 0.92;
+        }
+        bmiValue *= ageFactor;
+
+        // Determine BMI category
+        if (bmiValue < 18.5) {
+            bmiMessage = "Underweight";
+            diagnos = "Eat more";
+        } else if (bmiValue <= 24.9) {
+            bmiMessage = "Normal weight";
+            diagnos = "Everything is okay, bro!";
+        } else if (bmiValue <= 29.9) {
+            bmiMessage = "Overweight";
+            diagnos = "Eat less";
         } else {
-            if (height == 0) {
-                message = "";
-                message += "\n Your Brain is Underweight";
-            }
+            bmiMessage = "Obesity";
+            diagnos = "Do not eat anymore";
         }
     }
-    // Send a personalized greeting as the response
+
+    // Respond with the result
     res.send(`
         <!DOCTYPE html>
         <html lang="en">
@@ -49,12 +85,14 @@ app.post('/calculate', (req, res) => {
         </head>
         <body>
             <h1>Your Personalized BMI Calculator</h1>
-            <p>Your BMI: ${message}</p>
+            <p>Your BMI: ${bmiMessage}</p>
+            <p>Your Diagnosis: ${diagnos}</p>
             <a href="/">Go back</a> 
         </body>
         </html>
     `);
 });
+
 
 // Start the server
 const PORT = 3000; // Define the port number
