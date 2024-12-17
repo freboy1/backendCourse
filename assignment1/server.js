@@ -21,8 +21,8 @@ function isNumber(value) {
 
 // Route for handling the form submission
 app.post('/calculate', (req, res) => {
-    const weight = parseFloat(req.body.weight);
-    const height = parseFloat(req.body.height);
+    const weight = parseFloat(req.body.weight.replace(',', '.'));
+    const height = parseFloat(req.body.height.replace(',', '.'));
     const age = parseInt(req.body.age);
     let gender = 1; // Gender factor
 
@@ -85,7 +85,8 @@ app.post('/calculate', (req, res) => {
         </head>
         <body>
             <h1>Your Personalized BMI Calculator</h1>
-            <p>Your BMI: ${bmiMessage}</p>
+            <p>Your BMI: ${bmiValue}</p>
+            <p>Your BMI Category: ${bmiMessage}</p>
             <p>Your Diagnosis: ${diagnos}</p>
             <a href="/">Go back</a> 
         </body>
