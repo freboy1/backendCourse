@@ -1,0 +1,123 @@
+/* General styling for body */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Container for the search form and results */
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 30px; /* Space between form and result */
+}
+
+/* Header styling */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #3498db;
+}
+
+/* Form styling */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label styling */
+.search-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Input styling */
+.search-form input {
+    font-size: 1rem;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Button styling */
+.search-form button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Styling for the song result */
+.results {
+    font-size: 1rem;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
+}
+
+/* Album image styling */
+.album-image {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Track details styling */
+.track-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.track-details li {
+    margin: 10px 0;
+}
+
+/* Styling for track duration and preview link */
+.track-details .duration,
+.track-details .preview-link {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.track-details a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.track-details a:hover {
+    text-decoration: underline;
+}
