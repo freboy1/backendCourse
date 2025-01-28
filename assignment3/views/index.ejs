@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <h1>Add User</h1>
+  <form id="add-user-form" action="/users" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <button type="submit">Add User</button>
+  </form>
+
+  <h1>Users List</h1>
+
+  <form method="GET" action="/users">
+    <label for="search">Search:</label>
+    <input type="text" name="search" id="search" value="<%= search %>">
+    <label for="sortField">Sort By:</label>
+    <select name="sortField" id="sortField">
+      <option value="name" <%= sortField === 'name' ? 'selected' : '' %>>Name</option>
+      <option value="age" <%= sortField === 'age' ? 'selected' : '' %>>Age</option>
+    </select>
+
+    <label for="sortOrder">Order:</label>
+    <select name="sortOrder" id="sortOrder">
+      <option value="asc" <%= sortOrder === 'asc' ? 'selected' : '' %>>Ascending</option>
+      <option value="desc" <%= sortOrder === 'desc' ? 'selected' : '' %>>Descending</option>
+    </select>
+    <button type="submit">Apply</button>
+  </form>
+
+  <h1>Users List</h1>
+
+<ul>
+  <% users.forEach(user => { %>
+    <li>
+      <div class="user-info">
+        <div><strong>Name:</strong> <%= user.name %></div>
+        <div><strong>Email:</strong> <%= user.email %></div>
+        <div><strong>Age:</strong> <%= user.age %></div>
+      </div>
+      <div class="actions">
+        <a href="/user/edit/<%= user.id %>">Edit</a>
+        <form action="/user/delete/<%= user.id %>" method="POST" style="display: inline;">
+          <button type="submit" class="delete-btn">Delete</button>
+        </form>
+      </div>
+    </li>
+  <% }); %>
+</ul>
+
+</body>
+</html>

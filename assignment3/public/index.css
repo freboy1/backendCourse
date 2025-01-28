@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  form {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 1rem auto;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="number"],
+  form select,
+  form button {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  form button {
+    background-color: #0078ff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+  }
+  
+  form button:hover {
+    background-color: #0056cc;
+  }
+  
+  ul {
+    list-style: none;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0;
+  }
+  
+  ul li {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  ul li strong {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .user-info {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+  }
+  
+  .user-info div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: #0078ff;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    background-color: #eef4ff;
+    transition: background-color 0.3s;
+  }
+  
+  ul li a:hover {
+    background-color: #0078ff;
+    color: white;
+  }
+  
+  button {
+    padding: 0.6rem 1rem;
+    background-color: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056cc;
+  }
+  
+  ul li button.delete-btn {
+    background-color: red;
+  }
+  
+  ul li button.delete-btn:hover {
+    background-color: darkred;
+  }
+  
