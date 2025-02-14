@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome, <%= user.name %></h1>
+
+        <form action="/notes/add" method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="content" placeholder="Your note..." required></textarea>
+            <button type="submit">Add Note</button>
+        </form>
+
+        <h2>Your Notes</h2>
+        <ul class="note-list">
+            <% notes.forEach(note => { %>
+                <li>
+                    <strong><%= note.title %></strong>: <%= note.content %>
+                    <form action="/notes/delete/<%= note._id %>" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+</body>
+</html>
